@@ -1,0 +1,50 @@
+3 张表
+
+- blog：一份菜谱
+    - id: INT
+    - author: INT(外键[user])
+        - 每份菜单都有作者
+    - title: STR (菜名)
+    - cover: STR (路径) (封面)
+    - description: TEXT (介绍/心得)(blank=True)
+    - category_1: STR (分类_1)(blank=True)
+    - category_2: STR (分类_2)(blank=True)
+    - category_3: STR (分类_3)(blank=True)
+    - ingredient: TEXT （材料）
+    - step_1: TEXT
+    - step_1_photo: STR (路径)
+    - step_2: TEXT
+    - step_2_photo: STR (路径)
+    - step_3: TEXT
+    - step_3_photo: STR (路径)
+    - step_4: TEXT
+    - step_4_photo: STR (路径)
+    - step_5: TEXT
+    - step_5_photo: STR (路径)
+    - step_6: TEXT
+    - step_6_photo: STR (路径)
+    - step_7: TEXT
+    - step_7_photo: STR (路径)
+    - step_8: TEXT
+    - step_8_photo: STR (路径)
+    - step_9: TEXT
+    - step_9_photo: STR (路径)
+    - step_10: TEXT
+    - step_10_photo: STR (路径)
+
+- comments: 评论
+    - id: 
+    - user_id: INT(外键[user]) (评论人的user_id)
+    - blog_id: INT(外键[user])
+    - stars: INT
+    - description: TEXT (说明)
+
+- star_blogs: 收藏的菜谱
+    - id: 
+    - user_id: INT(外键[user])
+    - blog_id: INT(外键[user])
+
+- shared_blogs: 分享的菜谱
+    - id:
+    - user_id: INT(外键[user])
+    - blog_id: INT(外键[user])
