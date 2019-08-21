@@ -48,8 +48,4 @@
     - user_id: INT(外键[user])
     - blog_id: INT(外键[user])
     - like_date: DATE
-
-- shared_blogs: 分享的菜谱
-    - id:
-    - user_id: INT(外键[user])
-    - blog_id: INT(外键[user])
+    - is_cooked: BOOL (default=False)
