@@ -2,7 +2,7 @@
 
 - blog：一份菜谱
     - id: INT
-    - author: INT(外键[user])
+    - author_id: INT (user_id)
         - 每份菜单都有作者
     - title: STR (菜名)
     - cover: STR (路径) (封面)
@@ -31,6 +31,8 @@
     - step_9_photo: STR (路径)
     - step_10: TEXT
     - step_10_photo: STR (路径)
+    - is_published: BOOL
+    - post_date: DATE
 
 - comments: 评论
     - id: 
@@ -38,11 +40,14 @@
     - blog_id: INT(外键[user])
     - stars: INT
     - description: TEXT (说明)
+    - is_published: BOOL
+    - post_date: DATE
 
-- star_blogs: 收藏的菜谱
+- like_blogs: 收藏的菜谱
     - id: 
     - user_id: INT(外键[user])
     - blog_id: INT(外键[user])
+    - like_date: DATE
 
 - shared_blogs: 分享的菜谱
     - id:
