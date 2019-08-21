@@ -20,6 +20,9 @@ db.sqlite3
 # C extensions
 *.so
 
+# IDEA
+/.idea
+
 # Distribution / packaging
 .Python
 build/
