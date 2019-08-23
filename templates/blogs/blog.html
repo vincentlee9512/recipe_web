@@ -22,11 +22,168 @@
               </div>
             </div>
 
-              <h6>简介</h6>
+              <h5>简介</h5>
               <p>{{ blog.description }}</p>
 
+                <br/><br/><br/><br/><br/>
 
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 1：</h6>
+                    <p>{{ blog.step_1 }}</p>
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_2_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_1_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
 
+                {% if blog.step_2 or blog.step_2_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 2：</h6>
+                    {% if blog.step_2 %}
+                        <p>{{ blog.step_2 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_2_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_2_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_3 or blog.step_3_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 3：</h6>
+                    {% if blog.step_3 %}
+                        <p>{{ blog.step_3 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_2_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_3_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_4 or blog.step_4_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 4：</h6>
+                    {% if blog.step_4 %}
+                        <p>{{ blog.step_4 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_4_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_4_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_5 or blog.step_5_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 5：</h6>
+                    {% if blog.step_5 %}
+                        <p>{{ blog.step_5 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_5_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_5_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_6 or blog.step_6_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 6：</h6>
+                    {% if blog.step_6 %}
+                        <p>{{ blog.step_6 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_6_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_6_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_7 or blog.step_7_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 7：</h6>
+                    {% if blog.step_7 %}
+                        <p>{{ blog.step_7 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_7_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_7_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_8 or blog.step_8_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 8：</h6>
+                    {% if blog.step_8 %}
+                        <p>{{ blog.step_8 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_8_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_8_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_9 or blog.step_9_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 9：</h6>
+                    {% if blog.step_9 %}
+                        <p>{{ blog.step_9 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_9_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_9_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+                {% if blog.step_10 or blog.step_10_photo %}
+                <div class="row align-items-center my-8 recipe_step">
+                    <div class="col-lg-7">
+                    <h6>步骤 10：</h6>
+                    {% if blog.step_10 %}
+                        <p>{{ blog.step_10 }}</p>
+                    {% endif %}
+                  </div>
+                  <div class="col-lg-5">
+                  {% if blog.step_10_photo %}
+                    <img class="img-fluid recipe_step_photo rounded mb-4 mb-lg-0" src="{{ blog.step_10_photo.url }}" alt="">
+                  {% endif %}
+                  </div>
+                </div>
+                {% endif %}
+
+          <!-- Categories -->
             <div class="pt-5">
                     <p>Categories:
                         <a href="#">{{ blog.category_1 }}</a>,
@@ -83,34 +240,39 @@
                     <!-- END comment-list -->
 
                     <!-- New Comment section -->
-                    <div class="comment-form-wrap pt-5">
-                      <div class="section-title">
-                        <h2 class="mb-5">写下你的留言</h2>
-                      </div>
-                      <form action="#" class="p-5 bg-light">
-                        <div class="form-group">
-                          <label for="name">Name *</label>
-                          <input type="text" class="form-control" id="name">
-                        </div>
-                        <div class="form-group">
-                          <label for="email">Email *</label>
-                          <input type="email" class="form-control" id="email">
-                        </div>
-                        <div class="form-group">
-                          <label for="website">Website</label>
-                          <input type="url" class="form-control" id="website">
-                        </div>
+                      {% if user.is_authenticated %}
+                        <div class="comment-form-wrap pt-5">
+                          <div class="section-title">
+                            <h2 class="mb-5">评论</h2>
+                          </div>
+                          <form action="#" class="p-5 bg-light">
+                            <div class="form-group">
+                              <label for="name">Name *</label>
+                              <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Email *</label>
+                              <input type="email" class="form-control" id="email">
+                            </div>
+                            <div class="form-group">
+                              <label for="website">Website</label>
+                              <input type="url" class="form-control" id="website">
+                            </div>
 
-                        <div class="form-group">
-                          <label for="message">Message</label>
-                          <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                        <div class="form-group">
-                          <input type="submit" value="留言" class="btn btn-primary py-3">
-                        </div>
+                            <div class="form-group">
+                              <label for="message">Message</label>
+                              <textarea name="" id="message_text" cols="30" rows="10" class="form-control"></textarea>
+                            </div>
+                            <div class="form-group">
+                              <input type="submit" value="评论" class="btn btn-primary py-3">
+                            </div>
 
-                      </form>
-                    </div>
+                          </form>
+                        </div>
+                      {% else %}
+                        登入即可留言 <a href="{% url 'register'%}" class="btn btn-primary py-3">登入</a>
+                      {% endif %}
+
                     <!-- END New Comment section -->
 
                   </div>
@@ -125,7 +287,6 @@
             {% if popular_blogs %}
                 {% for blog in popular_blogs %}
                 <div class="trend-entry d-flex">
-                  <div class="number align-self-start">01</div>
                   <div class="trend-contents">
                     <h2><a href="{% url 'single_blog' blog.id %}">{{ blog.title }}</a></h2>
                     <div class="post-meta">

@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
 
+from blogs.views import Blog
+
 def login(request):
 
     if request.method == "POST":
@@ -68,8 +70,12 @@ def register(request):
 
 def dashboard(request):
 
-    # 从 User 表获得 user 信息
-    # 从 Blogs 表获得 user 发布的 blogs
     # 从 收藏 表获得收藏了的 blogs 的信息
 
-    return render(request, 'accounts/dashboard.html')
+    shared_blogs = Blog.objects.order_by('-post_date').filter(author_id=request.user.id)
+
+    context = {
+        'shared_blogs': shared_blogs
+    }
+
+    return render(request, 'accounts/dashboard.html', context)

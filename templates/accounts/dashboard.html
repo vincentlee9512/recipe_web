@@ -81,116 +81,25 @@
 
             <div class="row text-center">
 
-                <!-- card-1 -->
-                  <div class="col-lg-3 col-md-6 mb-4">
-                    <div class="card h-100">
-                      <img class="card-img-top" src="images/img_h_1.jpg" alt="">
-                      <div class="card-body">
-                        <h4 class="card-title">News Needs to Meet</h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                      </div>
-                      <div class="card-footer">
-                        <a href="#" class="btn btn-primary">Find Out More!</a>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- card-2 -->
-                  <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_2.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
-                    </div>
-
-                  <!-- card-3 -->
-                  <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_3.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- card-4 -->
+                {% if shared_blogs %}
+                    {% for blog in shared_blogs %}
                     <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_4.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+                        <div class="card h-100">
+                          <img class="card-img-top" src="{{ blog.cover.url }}" alt="">
+                          <div class="card-body">
+                            <h4 class="card-title">{{ blog.title }}</h4>
+                          </div>
+                          <div class="card-footer">
+                            <a href="{% url 'single_blog' blog.id %}" class="btn btn-primary">点击查看详情</a>
+                          </div>
                         </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
                     </div>
+                    {% endfor %}
+                {% else %}
+                    <h2>还没有发布任何食谱</h2>
+                {% endif %}
 
-                    <!-- card-5 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_2.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
-                    </div>
 
-                    <!-- card-6 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_4.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- card-7 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_1.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- card-8 -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                      <div class="card h-100">
-                        <img class="card-img-top" src="images/img_h_3.jpg" alt="">
-                        <div class="card-body">
-                          <h4 class="card-title">News Needs to Meet</h4>
-                          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                        </div>
-                        <div class="card-footer">
-                          <a href="#" class="btn btn-primary">Find Out More!</a>
-                        </div>
-                      </div>
-                    </div>
               </div>
         </div>
       </div>

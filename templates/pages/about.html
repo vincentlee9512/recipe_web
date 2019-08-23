@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
     <div class="site-section">
@@ -7,23 +9,23 @@
         <div class="row">
           <div class="col-12 text-left">
             <div class="section-title mb-5">
-              <h2>About Us</h2>
+              <h2>关于我</h2>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-lg-6">
             <p>
-              <img src="images/big_img_1.jpg" alt="Image" class="img-fluid">
+              <img src="{% static 'image/IMG_8789.JPG' %}" alt="Image" class="img-fluid">
             </p>
           </div>
           <div class="col-lg-6 pl-md-5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam qui obcaecati eaque odio, alias nulla quae, aliquid, rerum consequuntur, quaerat blanditiis cupiditate eos doloribus dolor debitis! Ex eius deleniti, soluta!</p>
-            <p>Facilis sit molestiae deserunt quo corporis culpa dolorum animi architecto illum sapiente. Asperiores, placeat animi distinctio provident adipisci.</p>
+            <p>我是李文轩，是一名计算机科学专业的毕业生，毕业于美国明尼苏达州的圣托马斯大学。(University of St. Thomas, MN)</p>
+
             <ul class="ul-check list-unstyled success mt-5">
-              <li>Lorem ipsum dolor sit.</li>
-              <li>Cupiditate dolores rerum, consequatur!</li>
-              <li>Quia dolor molestias voluptatem?</li>
+              <li>个人主页：<a href="https://vincentlee9512.github.io/">https://vincentlee9512.github.io/</a></li>
+              <li>个人技术博客（简书）：<a href="https://www.jianshu.com/u/d19cdd20fb94">https://www.jianshu.com/u/d19cdd20fb94</a></li>
+              <li>Notion技术博客：<a href="https://www.notion.so/Notes-1a259211f591444594d244b8fa19d558">https://www.notion.so/Notes-1a259211f591444594d244b8fa19d558</a></li>
             </ul>
           </div>
         </div>
