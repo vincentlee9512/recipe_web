@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
+
 <!-- moving banner -->
     <div class="site-section py-0">
       <div class="owl-carousel hero-slide owl-style">
@@ -8,16 +11,11 @@
         <div class="site-section">
           <div class="container">
             <div class="half-post-entry d-block d-lg-flex bg-light">
-              <div class="img-bg" style="background-image: url('images/big_img_1.jpg')"></div>
+              <div class="img-bg" style="background-image: url('{% static 'image/便当.jpg' %}')"></div>
               <div class="contents">
-                <span class="caption">Editor's Pick</span>
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendis. Enim praesentium magni delectus cum, tempore deserunt aliquid quaerat culpa nemo veritatis, iste adipisci excepturi consectetur doloribus aliquam accusantium beatae?</p>
-
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">Food</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                </div>
+                <span class="caption">专题</span>
+                <h2><a href="blog-single.html">适合便当的菜谱！</a></h2>
+                <p class="mb-3">便当其实就是我们的盒饭，都是家常菜，里面的每一种素材都是这样貌不惊人。它的全部秘密，就在编排上：谁先谁后，谁左谁右，谁多谁少，都得拿捏到位。就像一台戏总得有人策划一下，这时候骗子即是导演。有了导演，盒饭就不再是盒饭，而变成了便当。</p>
 
               </div>
             </div>
@@ -27,16 +25,11 @@
         <div class="site-section">
           <div class="container">
             <div class="half-post-entry d-block d-lg-flex bg-light">
-              <div class="img-bg" style="background-image: url('images/img_h_2.jpg')"></div>
+              <div class="img-bg" style="background-image: url('{% static 'image/家常菜.jpg' %}')"></div>
               <div class="contents">
-                <span class="caption">Editor's Pick</span>
-                <h2><a href="blog-single.html">News Needs to Meet Its Audiences Where They Are</a></h2>
-                <p class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate vero obcaecati natus adipisci necessitatibus eius, enim vel sit ad reiciendis. Enim praesentium magni delectus cum, tempore deserunt aliquid quaerat culpa nemo veritatis, iste adipisci excepturi consectetur doloribus aliquam accusantium beatae?</p>
-
-                <div class="post-meta">
-                  <span class="d-block"><a href="#">Dave Rogers</a> in <a href="#">Food</a></span>
-                  <span class="date-read">Jun 14 <span class="mx-1">&bullet;</span> 3 min read <span class="icon-star2"></span></span>
-                </div>
+                <span class="caption">专题</span>
+                <h2><a href="blog-single.html">在家可以简单料理的菜谱！</a></h2>
+                <p class="mb-3">家常菜是家庭日常制作食用的菜肴。家常菜，是中菜的源头，也是地方风味菜系的组成基础。家庭利用现有的调味品也可以炒制出的菜肴。夏天要吃些清淡的食物，甜品可以是绿豆海带汤、八宝粥、银耳百合汤等；汤可以是：老鸭冬瓜海带汤、鱼头豆腐紫菜汤、草菇肉末汤等。</p>
 
               </div>
             </div>
@@ -48,122 +41,35 @@
     </div>
     <!-- end moving banner -->
 
+
     <!-- cards -->
 
     <div class="site-section">
       <div class="container">
         <div class="row text-center">
 
-          <!-- card-1 -->
-            <div class="col-lg-3 col-md-6 mb-4">
-              <div class="card h-100">
-                <img class="card-img-top" src="images/img_h_1.jpg" alt="">
-                <div class="card-body">
-                  <h4 class="card-title">News Needs to Meet</h4>
-                  <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
+            {% if blogs %}
+                {% for blog in blogs %}
+                    <div class="col-lg-3 col-md-6 mb-4">
+                      <div class="card h-100">
+                        <img class="card-img-top" src="{{ blog.cover.url }}" alt="">
+                        <div class="card-body">
+                          <h4 class="card-title">{{ blog.title }}</h4>
+                          <p class="card-text">{{ blog.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                          <a href="{% url 'single_blog' blog.id %}" class="btn btn-primary">点击查看详情</a>
+                        </div>
+                      </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="container">
+                    <h1>目前还没有任何菜谱</h1>
                 </div>
-                <div class="card-footer">
-                  <a href="#" class="btn btn-primary">Find Out More!</a>
-                </div>
-              </div>
-            </div>
+            {% endif %}
 
-            <!-- card-2 -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_2.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
 
-            <!-- card-3 -->
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_3.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
-              <!-- card-4 -->
-              <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_4.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- card-5 -->
-              <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_2.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- card-6 -->
-              <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_4.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- card-7 -->
-              <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_1.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- card-8 -->
-              <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card h-100">
-                  <img class="card-img-top" src="images/img_h_3.jpg" alt="">
-                  <div class="card-body">
-                    <h4 class="card-title">News Needs to Meet</h4>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-                  </div>
-                  <div class="card-footer">
-                    <a href="#" class="btn btn-primary">Find Out More!</a>
-                  </div>
-                </div>
-              </div>
         </div>
       </div>
     </div>

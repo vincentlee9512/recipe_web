@@ -342,4 +342,4 @@ jQuery(document).ready(function($) {
 const date = new Date();
 setTimeout(function () {
 	$('#message').fadeOut('slow');
-}, 3000);
+}, 2000);

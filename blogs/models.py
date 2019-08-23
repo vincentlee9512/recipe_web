@@ -1,8 +1,10 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
+
 
 class Blog(models.Model):
-    author = models.IntegerField()
+    author = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     title = models.CharField(max_length=100)
     cover = models.ImageField(upload_to='photos/%Y/%m/%d')
     description = models.TextField(blank=True)

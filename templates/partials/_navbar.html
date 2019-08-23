@@ -10,18 +10,15 @@
                     <a href="{% url 'index' %}" class="nav-link text-left">首页</a>
                   </li>
                   <li>
-                    <a href="categories.html" class="nav-link text-left">分类</a>
-                  </li>
-                  <li>
-                    <a href="{% url 'about' %}" class="nav-link text-left">关于我们</a>
+                    <a href="{% url 'blogs' %}" class="nav-link text-left">分类</a>
                   </li>
 
                     {% if user.is_authenticated %}
                         <li>
-                            <a href="{% url 'dashboard' %}" class="nav-link text-left">个人面板</a>
+                            <a href="{% url 'new_blog' %}" class="nav-link text-left">发布新的菜谱</a>
                         </li>
                         <li>
-                            <a href="{% url 'dashboard' %}" class="nav-link text-left">收藏 / 发布</a>
+                            <a href="{% url 'dashboard' %}" class="nav-link text-left">个人面板（收藏/发布）</a>
                         </li>
                         <li>
                             <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">

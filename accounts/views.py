@@ -28,7 +28,6 @@ def login(request):
 def logout(request):
     if request.method == "POST":
         auth.logout(request)
-        messages.success(request, '你已成功登出')
         return redirect('index')
     else:
         return redirect('dashboard')
@@ -68,4 +67,9 @@ def register(request):
 
 
 def dashboard(request):
+
+    # 从 User 表获得 user 信息
+    # 从 Blogs 表获得 user 发布的 blogs
+    # 从 收藏 表获得收藏了的 blogs 的信息
+
     return render(request, 'accounts/dashboard.html')
