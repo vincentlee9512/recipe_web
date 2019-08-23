@@ -7,14 +7,37 @@
 
                 <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
                   <li class="active">
-                    <a href="index.html" class="nav-link text-left">首页</a>
+                    <a href="{% url 'index' %}" class="nav-link text-left">首页</a>
                   </li>
                   <li>
                     <a href="categories.html" class="nav-link text-left">分类</a>
                   </li>
                   <li>
-                    <a href="categories.html" class="nav-link text-left">关于我们</a>
+                    <a href="{% url 'about' %}" class="nav-link text-left">关于我们</a>
                   </li>
+
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a href="{% url 'dashboard' %}" class="nav-link text-left">个人面板</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'dashboard' %}" class="nav-link text-left">收藏 / 发布</a>
+                        </li>
+                        <li>
+                            <a href="javascript:{document.getElementById('logout').submit()}" class="nav-link">
+                                <i class="fas fa-sign-out-alt"></i> 登出
+                            </a>
+                            <form action="{% url 'logout' %}" method="POST" id="logout">
+                                {% csrf_token %}
+                            <input type="hidden">
+                        </form>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'login' %}" class="nav-link text-left">登入</a>
+                        </li>
+                    {% endif %}
+
                 </ul>
               </nav>
 

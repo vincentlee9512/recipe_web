@@ -26,7 +26,12 @@ def login(request):
 
 
 def logout(request):
-    return redirect('index')
+    if request.method == "POST":
+        auth.logout(request)
+        messages.success(request, '你已成功登出')
+        return redirect('index')
+    else:
+        return redirect('dashboard')
 
 
 def register(request):
