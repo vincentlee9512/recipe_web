@@ -343,3 +343,32 @@ const date = new Date();
 setTimeout(function () {
 	$('#message').fadeOut('slow');
 }, 2000);
+
+
+// function truncateText(selector, maxLength) {
+//     var element = document.querySelector(selector),
+//         truncated = element.innerText;
+//
+//     if (truncated.length > maxLength) {
+//         truncated = truncated.substr(0,maxLength) + '...';
+//     }
+//     return truncated;
+// }
+
+function truncateText(innerText, maxLength) {
+	var truncated = innerText;
+
+	if (truncated.length > maxLength){
+		truncated = truncated.substr(0,maxLength) + '...';
+	}
+	return truncated;
+}
+//You can then call the function with something like what i have below.
+// document.querySelector('p').innerText = truncateText('p', 10);
+
+var para_need_shorter = document.querySelectorAll('.shorter_p');
+var i;
+for (i=0; i<para_need_shorter.length; i++){
+	console.log(para_need_shorter[i]);
+	para_need_shorter[i].innerText = truncateText(para_need_shorter[i].innerText, 50);
+}

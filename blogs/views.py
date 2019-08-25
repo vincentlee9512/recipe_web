@@ -23,7 +23,7 @@ def single_blog(request, single_blog_id):
 
     popular_blogs = Blog.objects.order_by('-post_date')[:3]
 
-    comments = Comment.objects.filter(recipe_id=single_blog_id)
+    comments = Comment.objects.filter(recipe_id=single_blog_id).order_by('-post_date')
 
     comment_form = CommentForm()
 
@@ -83,3 +83,22 @@ def comment(request):
 
     else:
         return redirect('index')
+
+
+def search(request):
+    queryset_list = Blog.objects.order_by('-post_date')
+
+    # filter record with keyword
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        # 如果 keyword 不为空
+        if keyword:
+            queryset_list = queryset_list.filter(title__icontains=keyword)
+
+    print(queryset_list)
+
+    context = {
+        'blogs': queryset_list,
+    }
+
+    return render(request, 'blogs/blogs.html', context)

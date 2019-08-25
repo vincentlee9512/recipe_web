@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import Blog
+from .models import Blog, Comment
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title',)
+    list_display = ('id', 'title', 'post_date', 'category')
 
     list_display_links = ('id', 'title')
 
@@ -15,5 +15,17 @@ class BlogAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
-admin.site.register(Blog, BlogAdmin)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'recipe', 'post_date')
 
+    list_display_links = ('id', 'user')
+
+    list_filter = ('user', 'recipe')
+
+    search_fields = ('user', 'recipe')
+
+    list_per_page = 25
+
+
+admin.site.register(Blog, BlogAdmin)
+admin.site.register(Comment, CommentAdmin)

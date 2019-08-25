@@ -55,7 +55,7 @@
                         <img class="card-img-top" src="{{ blog.cover.url }}" alt="">
                         <div class="card-body">
                           <h4 class="card-title">{{ blog.title }}</h4>
-                          <p class="card-text">{{ blog.description }}</p>
+                          <p class="card-text shorter_p">{{ blog.description }}</p>
                         </div>
                         <div class="card-footer">
                           <a href="{% url 'single_blog' blog.id %}" class="btn btn-primary">点击查看详情</a>

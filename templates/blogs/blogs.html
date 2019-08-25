@@ -11,7 +11,10 @@
 
                     <ul class="nav nav-pills card-header-pills">
                       <li class="nav-item">
-                        <a class="nav-link active" href="#">家常菜</a>
+                        <a class="nav-link active" href="#">全部</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">家常菜</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">便当</a>
@@ -30,8 +33,8 @@
                     <div class="post-entry-2 d-flex">
                       <div class="thumbnail order-md-2" style="background-image: url({{ blog.cover.url }})"></div>
                       <div class="contents order-md-1 pl-0">
-                        <h2><a href="blog-single.html">{{ blog.title }}</a></h2>
-                        <p class="mb-2">{{ blog.description }}</p>
+                        <h2><a href="blog-single.html"><a href="{% url 'single_blog' blog.id %}">{{ blog.title }}</a></a></h2>
+                        <p class="mb-2 shorter_p">{{ blog.description }}</p>
                         <div class="post-meta">
                           <span class="d-block"><a href="#">{{ blog.author }} <span class="mx-1">&bullet;</span> {{ blog.category }}</a></span>
                           <span class="date-read">{{ blog.post_date }}</span>

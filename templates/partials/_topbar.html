@@ -15,10 +15,10 @@
                 <a href="#" class="d-inline-block p-3"></a>
                 <a href="{% url 'about' %}" class="d-inline-block p-3">关于作者</a>
             </div>
-            <form action="#" class="search-form d-inline-block">
+            <form action="{% url 'search' %}" class="search-form d-inline-block">
 
               <div class="d-flex">
-                <input type="email" class="form-control" placeholder="Search...">
+                <input type="text" class="form-control" name="keyword" placeholder="Search...">
                 <button type="submit" class="btn btn-secondary" ><span class="icon-search"></span></button>
               </div>
             </form>
