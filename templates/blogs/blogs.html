@@ -11,17 +11,38 @@
 
                     <ul class="nav nav-pills card-header-pills">
                       <li class="nav-item">
-                        <a class="nav-link active" href="#">全部</a>
+                        <a
+                        {% if active_cate == None %}
+                            class="nav-link active"
+                        {% else %}
+                            class="nav-link"
+                        {% endif %}
+                        href="{% url 'blogs' %}">全部</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">家常菜</a>
+                            <a
+                            {% if active_cate == '家常菜' %}
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %} href="{% url 'categorize' '家常菜' %}">家常菜</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">便当</a>
+                            <a
+                            {% if active_cate == '便当' %}
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %} href="{% url 'categorize' '便当' %}">便当</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="#">甜品 </a>
-                        </li>
+                            <a
+                            {% if active_cate == '甜品' %}
+                                class="nav-link active"
+                            {% else %}
+                                class="nav-link"
+                            {% endif %} href="{% url 'categorize' '甜品' %}">甜品</a>
+                      </li>
                     </ul>
 
 

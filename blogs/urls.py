@@ -7,4 +7,5 @@ urlpatterns = [
     path('<int:single_blog_id>', views.single_blog, name='single_blog'),
     path('comment', views.comment, name='comment'),
     path('search', views.search, name='search'),
+    path('category=<str:cate_type>', views.categorize, name='categorize'),
 ]

@@ -3,10 +3,6 @@ from .models import Blog, Comment
 
 
 class NewBlogForm(forms.ModelForm):
-    CATEGORY_CHOICE = (
-        '家常菜',
-        '便当',
-    )
 
     class Meta:
         model = Blog
@@ -22,6 +18,7 @@ class NewBlogForm(forms.ModelForm):
         CATEGORY_CHOICE = (
             ('家常菜', '家常菜'),
             ('便当', '便当'),
+            ('甜品', '甜品'),
         )
 
         widgets = {

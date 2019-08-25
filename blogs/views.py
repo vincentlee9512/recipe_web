@@ -3,6 +3,7 @@ from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .form import NewBlogForm, CommentForm
 from .models import Blog, Comment
 
+
 def blogs(request):
     blogs = Blog.objects.order_by('-post_date')
 
@@ -56,7 +57,7 @@ def new_blog(request):
             new_single_blog.author = request.user
             new_single_blog.save()
 
-            return render(request, 'accounts/dashboard.html')
+            return redirect('dashboard')
 
         else:
             return render(request, 'blogs/new_blog.html')
@@ -86,19 +87,43 @@ def comment(request):
 
 
 def search(request):
-    queryset_list = Blog.objects.order_by('-post_date')
+    queryset_list = Blog.objects.all().order_by('-post_date')
 
-    # filter record with keyword
+
+    # 用 keyword 过滤结果，在菜名和分类的字段中过滤
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
+        print(f"KEYWORD: {keyword}")
         # 如果 keyword 不为空
         if keyword:
-            queryset_list = queryset_list.filter(title__icontains=keyword)
+            title_queryset_list = queryset_list.filter(title__icontains=keyword)
+            category_queryset_list = queryset_list.filter(category__icontains=keyword)
+            queryset_list = title_queryset_list.union(category_queryset_list).order_by('-post_date')
 
-    print(queryset_list)
+    paginator = Paginator(queryset_list, 3)
+    page = request.GET.get('page')
+    paged_result = paginator.get_page(page)
 
     context = {
-        'blogs': queryset_list,
+        'blogs': paged_result,
+    }
+
+    return render(request, 'blogs/blogs.html', context)
+
+
+def categorize(request, cate_type):
+    print(f'cate_type: {cate_type}')
+
+    queryset_list = Blog.objects.all().order_by('-post_date').filter(category__icontains=cate_type)
+    active_cate = cate_type
+
+    paginator = Paginator(queryset_list, 3)
+    page = request.GET.get('page')
+    paged_result = paginator.get_page(page)
+
+    context = {
+        'blogs': paged_result,
+        'active_cate': active_cate
     }
 
     return render(request, 'blogs/blogs.html', context)
