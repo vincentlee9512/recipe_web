@@ -1,1 +1,156 @@
-<h1>new blog</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="comment-form-wrap pt-5">
+      <div class="section-title">
+        <h2 class="mb-5" style="margin-top: 50px; margin-left: 30px">新的菜谱</h2>
+      </div>
+      <form action="{% url 'new_blog' %}" method="post" class="p-5 bg-light" enctype="multipart/form-data">
+          {% csrf_token %}
+
+{#        <input type="hidden" name="author_id" value="{{ user.id }}">#}
+
+{#        <div class="form-group">#}
+{#          <label for="title">作者 *</label>#}
+{#            {{ form.author }}#}
+{#        </div>#}
+
+        <div class="form-group">
+          <label for="title">菜肴的名字 *</label>
+            {{ form.title }}
+        </div>
+
+        <div class="form-group">
+          <label for="description">简介 *</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-group">
+            <label for="cover">菜肴的封面 *</label>
+            {{ form.cover }}
+{#            <input type="file" class="form-control-file" name="cover" required>#}
+        </div>
+
+        <div class="form-group">
+            <label for="category_1">分类标签 *</label>
+            {{ form.category }}
+        </div>
+
+        <div class="form-group">
+            <label for="ingredient">准备材料 *</label>
+            {{ form.ingredient }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+        <div class="form-group">
+            <label for="step_1">步骤 1 *</label>
+            {{ form.step_1 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 1 图片（选填）</label>
+            {{ form.step_1_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 2（选填）</label>
+            {{ form.step_2 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 2 图片（选填）</label>
+            {{ form.step_2_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 3（选填）</label>
+            {{ form.step_3 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 3 图片（选填）</label>
+            {{ form.step_3_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 4 （选填）</label>
+            {{ form.step_4 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 4 图片（选填）</label>
+            {{ form.step_4_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 5 （选填）</label>
+            {{ form.step_5 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 5 图片（选填）</label>
+            {{ form.step_5_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 6 （选填）</label>
+            {{ form.step_6 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 6 图片（选填）</label>
+            {{ form.step_6_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 7 （选填）</label>
+            {{ form.step_7 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 7 图片（选填）</label>
+            {{ form.step_7_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 8 （选填）</label>
+            {{ form.step_8 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 8 图片（选填）</label>
+            {{ form.step_8_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 9 （选填）</label>
+            {{ form.step_9 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 9 图片（选填）</label>
+            {{ form.step_9_photo }}
+        </div>
+          <br/><div class="dropdown-divider"></div><br/>
+
+          <div class="form-group">
+            <label for="step_1">步骤 10 （选填）</label>
+            {{ form.step_10 }}
+        </div>
+        <div class="form-group">
+            <label for="cover">步骤 10 图片（选填）</label>
+            {{ form.step_10_photo }}
+        </div>
+          <br/>
+        <div class="form-group">
+          <input type="submit" value="发布新食谱" class="btn btn-primary py-3">
+        </div>
+
+      </form>
+    </div>
+    {% else %}
+        <div class="container" style="margin-top: 15%; margin-bottom: 15%;">
+            <h3> 登入即可分享菜谱！ <a href="{% url 'login'%}" class="btn btn-primary py-3">登入</a></h3>
+        </div>
+    {% endif %}
+{% endblock %}

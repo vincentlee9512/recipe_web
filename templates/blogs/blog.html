@@ -22,6 +22,14 @@
               </div>
             </div>
 
+          <!-- Categories -->
+            <div class="pt-5">
+                <p>Categories:
+                    <a href="#">{{ blog.category }}</a>
+
+                </p>
+              </div>
+
               <h5>简介</h5>
               <p>{{ blog.description }}</p>
 
@@ -183,18 +191,7 @@
                 </div>
                 {% endif %}
 
-          <!-- Categories -->
-            <div class="pt-5">
-                    <p>Categories:
-                        <a href="#">{{ blog.category_1 }}</a>,
-                        {% if blog.category_2 %}
-                         <a href="#">{{ blog.category_2 }}</a>
-                        {% endif %}
-                        {% if blog.category_3 %}
-                         <a href="#">{{ blog.category_3 }}</a>
-                        {% endif %}
-                    </p>
-                  </div>
+
 
 
                   <div class="pt-5">

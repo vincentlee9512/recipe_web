@@ -56,9 +56,9 @@ def register(request):
                     messages.error(request, '此 email 已被使用')
                     redirect('register')
                 else:
-                    # user = User.objects.create_user(username=username, email=email, password=password)
+                    user = User.objects.create_user(username=username, email=email, password=password)
 
-                    # user.save()
+                    user.save()
                     messages.success(request, '你已经成功注册账号，请登陆')
                     return redirect('login')
         else:

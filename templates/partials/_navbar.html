@@ -12,11 +12,11 @@
                   <li>
                     <a href="{% url 'blogs' %}" class="nav-link text-left">分类</a>
                   </li>
+                    <li>
+                        <a href="{% url 'new_blog' %}" class="nav-link text-left">发布新的菜谱</a>
+                    </li>
 
                     {% if user.is_authenticated %}
-                        <li>
-                            <a href="{% url 'new_blog' %}" class="nav-link text-left">发布新的菜谱</a>
-                        </li>
                         <li>
                             <a href="{% url 'dashboard' %}" class="nav-link text-left">个人面板（收藏/发布）</a>
                         </li>
@@ -32,6 +32,7 @@
                     {% else %}
                         <li>
                             <a href="{% url 'login' %}" class="nav-link text-left">登入</a>
+                            <a href="{% url 'register' %}" class="nav-link text-left">注册</a>
                         </li>
                     {% endif %}
 

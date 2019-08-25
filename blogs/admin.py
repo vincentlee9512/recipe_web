@@ -4,15 +4,13 @@ from .models import Blog
 
 
 class BlogAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'author', 'is_published', 'post_date')
+    list_display = ('id', 'title',)
 
     list_display_links = ('id', 'title')
 
     list_filter = ('author', )
 
-    list_editable = ('is_published', )
-
-    search_fields = ('title', 'author', 'description', 'ingredient', 'category_1', 'category_2', 'category_3')
+    search_fields = ('title', 'author')
 
     list_per_page = 25
 
