@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.core.files.base import ContentFile
+from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
 from .form import NewBlogForm, CommentForm
 from .models import Blog, Comment
 
 def blogs(request):
-    blogs = Blog.objects.order_by('-post_date')[:8]
+    blogs = Blog.objects.order_by('-post_date')
+
+    paginator = Paginator(blogs, 3)
+    page = request.GET.get('page')
+    paged_blogs = paginator.get_page(page)
 
     context = {
-        'blogs': blogs
+        'blogs': paged_blogs
     }
 
     return render(request, 'blogs/blogs.html', context)
