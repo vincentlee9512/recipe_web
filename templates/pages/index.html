@@ -14,7 +14,7 @@
               <div class="img-bg" style="background-image: url('{% static 'image/便当.jpg' %}')"></div>
               <div class="contents">
                 <span class="caption">专题</span>
-                <h2><a href="blog-single.html">适合便当的菜谱！</a></h2>
+                <h2><a href="{% url 'categorize' '便当' %}">适合便当的菜谱！</a></h2>
                 <p class="mb-3">便当其实就是我们的盒饭，都是家常菜，里面的每一种素材都是这样貌不惊人。它的全部秘密，就在编排上：谁先谁后，谁左谁右，谁多谁少，都得拿捏到位。就像一台戏总得有人策划一下，这时候骗子即是导演。有了导演，盒饭就不再是盒饭，而变成了便当。</p>
 
               </div>
@@ -28,7 +28,7 @@
               <div class="img-bg" style="background-image: url('{% static 'image/家常菜.jpg' %}')"></div>
               <div class="contents">
                 <span class="caption">专题</span>
-                <h2><a href="blog-single.html">在家可以简单料理的菜谱！</a></h2>
+                <h2><a href="{% url 'categorize' '家常菜' %}">在家可以简单料理的菜谱！</a></h2>
                 <p class="mb-3">家常菜是家庭日常制作食用的菜肴。家常菜，是中菜的源头，也是地方风味菜系的组成基础。家庭利用现有的调味品也可以炒制出的菜肴。夏天要吃些清淡的食物，甜品可以是绿豆海带汤、八宝粥、银耳百合汤等；汤可以是：老鸭冬瓜海带汤、鱼头豆腐紫菜汤、草菇肉末汤等。</p>
 
               </div>
@@ -36,7 +36,19 @@
           </div>
         </div>
 
+        <div class="site-section">
+          <div class="container">
+            <div class="half-post-entry d-block d-lg-flex bg-light">
+              <div class="img-bg" style="background-image: url('{% static 'image/甜品.jpg' %}')"></div>
+              <div class="contents">
+                <span class="caption">专题</span>
+                <h2><a href="{% url 'categorize' '甜品' %}">美味又好吃的甜品！</a></h2>
+                <p class="mb-3">从早先的主要采用糖和杏仁，到不断融入乳制品、鸡蛋、水果、巧克力等食材，到如今造型精致、令人见而垂涎的甜品。甜点师和甜品本身，已被赋予了太多的浪漫色彩，人们总说，甜点师堪比珠宝师，甜品则美得像梦。</p>
 
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- end moving banner -->
@@ -63,6 +75,13 @@
                       </div>
                     </div>
                 {% endfor %}
+
+
+                <div class="container">
+                    <p>
+                      <a href="{% url 'blogs' %}" class="more">查看所有菜谱 <span class="icon-keyboard_arrow_right"></span></a>
+                    </p>
+                </div>
             {% else %}
                 <div class="container">
                     <h1>目前还没有任何菜谱</h1>
