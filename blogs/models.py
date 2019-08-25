@@ -39,6 +39,18 @@ class Blog(models.Model):
     step_10 = models.TextField(blank=True)
     step_10_photo = models.ImageField(upload_to='photos/%Y/%m/%d', blank=True)
 
-
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+
+    # 评论者
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+
+    # 食谱
+    recipe = models.ForeignKey(Blog, on_delete=models.DO_NOTHING)
+
+    # 评论本文
+    comment = models.TextField(blank=False)
+    post_date = models.DateTimeField(default=datetime.now, blank=True)
