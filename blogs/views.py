@@ -38,6 +38,7 @@ def single_blog(request, single_blog_id):
     user = request.user
 
     target_blog = get_object_or_404(Blog, pk=single_blog_id)
+    target_blog_author_id = target_blog.author_id
     comments = Comment.objects.filter(recipe_id=single_blog_id).order_by('-post_date')
     comment_form = CommentForm()
     is_like = LikedBlog.objects.filter(user=user, blog=target_blog).exists()
@@ -59,6 +60,7 @@ def single_blog(request, single_blog_id):
         'comment_form': comment_form,
         'comments': comments,
         'is_like': is_like,
+        'modifiable': (user.id == target_blog_author_id),
     }
 
     return render(request, 'blogs/blog.html', context)
@@ -91,6 +93,72 @@ def new_blog(request):
 
     else:
         return render(request, 'blogs/new_blog.html', context)
+
+
+def modify_blog(request, blog_id):
+    """修改已发布的食谱"""
+
+    blog = get_object_or_404(Blog, pk=blog_id)
+
+    user_id = request.user.id
+    blog_author_id = blog.author_id
+
+    if request.method == "POST":
+
+        form = NewBlogForm(request.POST, request.FILES, instance=blog)
+
+        print(f'we were here. blog_id: {blog.id}')
+        print(form.errors)
+
+        if form.is_valid():
+            print('here?')
+            form.save()
+
+        return redirect('single_blog', blog.id)
+        pass
+    else:
+        # 检验这个 user 是不是这个 blog 的作者
+        if user_id == blog_author_id:
+
+            # 初始化 form，将前端输入栏中的默认数据设置成已发布的数据
+            # 用 NewBlogForm 因为数据都一样的
+            form = NewBlogForm(initial={
+                'title': blog.title,
+                'cover': blog.cover,
+                'description': blog.description,
+                'category': blog.category,
+                'ingredient': blog.ingredient,
+                'step_1': blog.step_1,
+                'step_1_photo': blog.step_1_photo,
+                'step_2': blog.step_2,
+                'step_2_photo': blog.step_2_photo,
+                'step_3': blog.step_3,
+                'step_3_photo': blog.step_3_photo,
+                'step_4': blog.step_4,
+                'step_4_photo': blog.step_4_photo,
+                'step_5': blog.step_5,
+                'step_5_photo': blog.step_5_photo,
+                'step_6': blog.step_6,
+                'step_6_photo': blog.step_6_photo,
+                'step_7': blog.step_7,
+                'step_7_photo': blog.step_7_photo,
+                'step_8': blog.step_8,
+                'step_8_photo': blog.step_8_photo,
+                'step_9': blog.step_9,
+                'step_9_photo': blog.step_9_photo,
+                'step_10': blog.step_10,
+                'step_10_photo': blog.step_10_photo,
+            })
+
+            context = {
+                'form': form,
+                'blog': blog,
+            }
+
+            return render(request, 'blogs/modify_blog.html', context)
+            pass
+        else:
+            return redirect('index')
 
 
 def comment(request):

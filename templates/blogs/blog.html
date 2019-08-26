@@ -26,13 +26,16 @@
                     </form>
                 {% endif %}
             </h1>
-            <div class="post-meta d-flex mb-5">
+            <div class="post-meta d-flex mb-3">
 {#              <div class="bio-pic mr-3">#}
 {#                <img src="images/person_1.jpg" alt="Image" class="img-fluidid">#}
 {#              </div>#}
               <div class="vcard">
                 <span class="d-block"><a href="#">{{ blog.author }}</a></span>
                 <span class="date-read">{{ blog.post_date }}</span>
+                  {% if modifiable %}
+                <span class="d-block"><a href="{% url 'modify_blog' blog.id %}"> 修改 </a></span>
+                  {% endif %}
               </div>
             </div>
 
@@ -40,7 +43,6 @@
             <div class="pt-2">
                 <p>Categories:
                     <a href="{% url 'categorize' blog.category %}">{{ blog.category }}</a>
-
                 </p>
               </div>
 
