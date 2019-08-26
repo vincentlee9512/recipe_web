@@ -17,7 +17,7 @@ def blogs(request):
     popular_blogs = Blog.objects.none()
 
     # 在 LikedBlog model 中，取出 like 最多的三个食谱的id
-    liked_most_records = LikedBlog.objects.all().values('blog_id').annotate(total=Count('blog_id')).order_by('total')[:3]
+    liked_most_records = LikedBlog.objects.all().values('blog_id').annotate(total=Count('blog_id')).order_by('-total')[:3]
 
     # 根据上面的3个 id， 取出 Blog model 中的食谱
     for liked_record in liked_most_records:
@@ -46,7 +46,7 @@ def single_blog(request, single_blog_id):
     popular_blogs = Blog.objects.none()
 
     # 在 LikedBlog model 中，取出 like 最多的三个食谱的id
-    liked_most_records = LikedBlog.objects.all().values('blog_id').annotate(total=Count('blog_id')).order_by('total')[
+    liked_most_records = LikedBlog.objects.all().values('blog_id').annotate(total=Count('blog_id')).order_by('-total')[
                          :3]
 
     # 根据上面的3个 id， 取出 Blog model 中的食谱
