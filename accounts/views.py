@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
 
-from blogs.views import Blog
+from blogs.views import Blog, LikedBlog
 
 def login(request):
 
@@ -70,12 +70,23 @@ def register(request):
 
 def dashboard(request):
 
-    # 从 收藏 表获得收藏了的 blogs 的信息
+    user_id = request.user.id
 
-    shared_blogs = Blog.objects.order_by('-post_date').filter(author_id=request.user.id)
+    liked_blogs = Blog.objects.none()
+
+    # 获得已经收藏的食谱
+    # 这只是 like 的 record，不是 blog
+    liked_records = LikedBlog.objects.filter(user_id=user_id).order_by('-like_date')[:3]
+    for liked_record in liked_records:
+        print(f'user id: {liked_record.user_id}, blog id: {liked_record.blog_id}')
+        liked_blogs = liked_blogs.union(Blog.objects.filter(pk=liked_record.blog_id))
+
+    # 获得已经发布的食谱
+    shared_blogs = Blog.objects.filter(author_id=user_id).order_by('-post_date')
 
     context = {
-        'shared_blogs': shared_blogs
+        'shared_blogs': shared_blogs,
+        'liked_blogs': liked_blogs,
     }
 
     return render(request, 'accounts/dashboard.html', context)

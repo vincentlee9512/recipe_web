@@ -10,7 +10,21 @@
               <img src="{{ blog.cover.url }}" alt="Image" class="img-fluid">
             </p>
             <h1 class="mb-4">
-              {{ blog.title }}
+                {% if is_like %}
+                    <form action="{% url 'unlike' %}" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                        <label class="my-1 mr-2">{{ blog.title }}</label>
+                        <button type="submit" class="btn btn-primary btn-sm ml-5">已收藏</button>
+                    </form>
+                {% else %}
+                    <form action="{% url 'like' %}" method="post" class="form-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="blog_id" value="{{ blog.id }}">
+                        <label class="my-1 mr-2">{{ blog.title }}</label>
+                        <button type="submit" class="btn btn-primary btn-sm ml-5">收藏菜谱</button>
+                    </form>
+                {% endif %}
             </h1>
             <div class="post-meta d-flex mb-5">
 {#              <div class="bio-pic mr-3">#}
@@ -23,17 +37,24 @@
             </div>
 
           <!-- Categories -->
-            <div class="pt-5">
+            <div class="pt-2">
                 <p>Categories:
-                    <a href="#">{{ blog.category }}</a>
+                    <a href="{% url 'categorize' blog.category %}">{{ blog.category }}</a>
 
                 </p>
               </div>
 
+            <div class="pt-4">
               <h5>简介</h5>
               <p>{{ blog.description }}</p>
+            </div>
 
-                <br/><br/><br/>
+            <div class="pt-4">
+              <h5>准备材料</h5>
+              <p>{{ blog.ingredient  }}</p>
+            </div>
+
+
 
                 <div class="row align-items-center my-8 recipe_step">
                     <div class="col-lg-7">
@@ -225,7 +246,7 @@
                           <div class="section-title">
                             <h2 class="">你的留言</h2>
                           </div>
-                          <form action="comment" method="post" class="p-5 bg-light">
+                          <form action="{% url 'comment' %}" method="post" class="p-5 bg-light">
                               {% csrf_token %}
 
                               <input type="hidden" name="blog_id" value="{{ blog.id }}">
@@ -248,31 +269,8 @@
           </div>
 
 
-          <div class="col-lg-3 ml-auto">
-            <div class="section-title">
-              <h2>人气食谱</h2>
-            </div>
-
-            {% if popular_blogs %}
-                {% for blog in popular_blogs %}
-                <div class="trend-entry d-flex">
-                  <div class="trend-contents">
-                    <h2><a href="{% url 'single_blog' blog.id %}">{{ blog.title }}</a></h2>
-                    <div class="post-meta">
-                      <span class="d-block"><a href="#">{{ blog.author }}</a></span>
-                      <span class="date-read">{{ blog.post_date }}</span>
-                    </div>
-                  </div>
-                </div>
-                {% endfor %}
-            {% else %}
-                <h3>目前还没有任何菜谱</h3>
-            {% endif %}
-
-            <p>
-              <a href="{% url 'blogs' %}" class="more">更多人气菜谱<span class="icon-keyboard_arrow_right"></span></a>
-            </p>
-          </div>
+          <!-- popular part -->
+          {% include 'partials/_popular_list.html' %}
 
 
         </div>

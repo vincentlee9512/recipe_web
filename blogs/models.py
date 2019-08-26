@@ -54,3 +54,9 @@ class Comment(models.Model):
     # 评论本文
     comment = models.TextField(blank=False)
     post_date = models.DateTimeField(default=datetime.now, blank=True)
+
+
+class LikedBlog(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    like_date = models.DateTimeField(default=datetime.now, blank=True)

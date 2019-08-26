@@ -1,5 +1,5 @@
 from django import forms
-from .models import Blog, Comment
+from .models import Blog, Comment, LikedBlog
 
 
 class NewBlogForm(forms.ModelForm):
@@ -62,3 +62,9 @@ class CommentForm(forms.ModelForm):
         widgets = {
             'comment': forms.Textarea(attrs={'class': 'form-control'}),
         }
+
+
+class LikeForm(forms.ModelForm):
+    class Meta:
+        model = LikedBlog
+        exclude = ('user', 'blog')
