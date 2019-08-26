@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import EmptyPage, Paginator, PageNotAnInteger
+from django.db.models import Count
 from .form import NewBlogForm, CommentForm, LikeForm
 from .models import Blog, Comment, LikedBlog
 
@@ -13,8 +14,19 @@ def blogs(request):
     page = request.GET.get('page')
     paged_blogs = paginator.get_page(page)
 
+    popular_blogs = Blog.objects.none()
+
+    # 在 LikedBlog model 中，取出 like 最多的三个食谱的id
+    liked_most_records = LikedBlog.objects.all().values('blog_id').annotate(total=Count('blog_id')).order_by('total')[:3]
+
+    # 根据上面的3个 id， 取出 Blog model 中的食谱
+    for liked_record in liked_most_records:
+        popular_blogs = popular_blogs.union(Blog.objects.filter(pk=liked_record.get('blog_id')))
+
+
     context = {
-        'blogs': paged_blogs
+        'blogs': paged_blogs,
+        'popular_blogs': popular_blogs,
     }
 
     return render(request, 'blogs/blogs.html', context)
@@ -26,10 +38,19 @@ def single_blog(request, single_blog_id):
     user = request.user
 
     target_blog = get_object_or_404(Blog, pk=single_blog_id)
-    popular_blogs = Blog.objects.order_by('-post_date')[:3]
     comments = Comment.objects.filter(recipe_id=single_blog_id).order_by('-post_date')
     comment_form = CommentForm()
     is_like = LikedBlog.objects.filter(user=user, blog=target_blog).exists()
+
+    popular_blogs = Blog.objects.none()
+
+    # 在 LikedBlog model 中，取出 like 最多的三个食谱的id
+    liked_most_records = LikedBlog.objects.all().values('blog_id').annotate(total=Count('blog_id')).order_by('total')[
+                         :3]
+
+    # 根据上面的3个 id， 取出 Blog model 中的食谱
+    for liked_record in liked_most_records:
+        popular_blogs = popular_blogs.union(Blog.objects.filter(pk=liked_record.get('blog_id')))
 
     context = {
         'single_blog_id': single_blog_id,
@@ -187,7 +208,6 @@ def personal_likes(request):
     liked_records = LikedBlog.objects.filter(user_id=user_id).order_by('-like_date')
 
     for liked_record in liked_records:
-        print(f'user id: {liked_record.user_id}, blog id: {liked_record.blog_id}')
         liked_blogs = liked_blogs.union(Blog.objects.filter(pk=liked_record.blog_id))
 
     paginator = Paginator(liked_blogs, 3)
