@@ -78,7 +78,6 @@ def dashboard(request):
     # 这只是 like 的 record，不是 blog
     liked_records = LikedBlog.objects.filter(user_id=user_id).order_by('-like_date')[:3]
     for liked_record in liked_records:
-        print(f'user id: {liked_record.user_id}, blog id: {liked_record.blog_id}')
         liked_blogs = liked_blogs.union(Blog.objects.filter(pk=liked_record.blog_id))
 
     # 获得已经发布的食谱

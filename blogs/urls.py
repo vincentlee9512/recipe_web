@@ -12,4 +12,5 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('category=<str:cate_type>', views.categorize, name='categorize'),
     path('personal_likes', views.personal_likes, name='personal_likes'),
+    path('delete_blog=<int:blog_id>', views.delete_blog, name='delete_blog'),
 ]

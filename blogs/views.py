@@ -107,11 +107,7 @@ def modify_blog(request, blog_id):
 
         form = NewBlogForm(request.POST, request.FILES, instance=blog)
 
-        print(f'we were here. blog_id: {blog.id}')
-        print(form.errors)
-
         if form.is_valid():
-            print('here?')
             form.save()
 
         return redirect('single_blog', blog.id)
@@ -230,7 +226,6 @@ def search(request):
     # 用 keyword 过滤结果，在菜名和分类的字段中过滤
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
-        print(f"KEYWORD: {keyword}")
         # 如果 keyword 不为空
         if keyword:
             title_queryset_list = queryset_list.filter(title__icontains=keyword)
@@ -288,3 +283,10 @@ def personal_likes(request):
     }
 
     return render(request, 'blogs/blogs.html', context)
+
+
+def delete_blog(request, blog_id):
+    instance = Blog.objects.get(id=blog_id)
+    instance.delete()
+
+    return redirect('dashboard')
